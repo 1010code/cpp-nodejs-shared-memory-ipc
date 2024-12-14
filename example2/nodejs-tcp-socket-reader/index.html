@@ -1,0 +1,35 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>共享記憶體數據顯示</title>
+</head>
+<body>
+  <h1>共享記憶體數據</h1>
+  <p id="data">等待數據...</p>
+
+  <!-- 引入 Socket.IO 客戶端庫 -->
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script>
+    // 連接到 Socket.IO 伺服器
+    const socket = io(); // 將 YOUR_SERVER_IP 替換為您的伺服器 IP 地址
+
+    // 當連接建立時
+    socket.on('connect', () => {
+      console.log('已連接到伺服器');
+    });
+
+    // 接收來自伺服器的共享數據
+    socket.on('sharedData', (dataArray) => {
+      //console.log('接收到的數據數組：', dataArray);
+      document.getElementById('data').textContent = '讀取到的浮點數數組：' + dataArray.join(', ');
+    });
+
+    // 當連接斷開時
+    socket.on('disconnect', () => {
+      console.log('已從伺服器斷開');
+    });
+  </script>
+</body>
+</html>
