@@ -3,4 +3,4 @@
 - nodejs-tcp-socket-reader: 參考 `nodedjs-reader` 並封裝成TCP Socket API，與前端網頁互動。
 
 
-![](./flow.png)
+![](./flow.svg)
